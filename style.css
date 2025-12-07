@@ -1,112 +1,309 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreshFood - Order in Minutes</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+/* Requirement: CSS Variables */
+:root {
+    --primary-color: #10b981;
+    --dark-bg: #064e3b;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --black: #000000;
+    --font-base: 'Poppins', sans-serif;
+}
 
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+/* Requirement: Relative units & Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <header class="main-header">
-        <nav class="navbar">
-            <div class="logo">FreshFood.</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#" class="btn-primary">Get App</a></li>
-            </ul>
-        </nav>
-    </header>
+html {
+    scroll-behavior: smooth;
+}
 
-    <main id="main-content">
+body {
+    font-family: var(--font-base);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
 
-        <section class="hero">
-            <div class="hero-text fade-in-animation">
-                <h1>Order in <span class="highlight">minutes.</span></h1>
-                <p>Choose from local favorites or global cuisine and order your meal in just a few taps.</p>
-                <div class="cta-group">
-                    <button class="btn-primary">Order Now</button>
-                    <button class="btn-secondary">View Menu</button>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Delicious Food Bowl">
-            </div>
-        </section>
+/* Requirement: Skip Link (Hidden until focused) */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--black);
+    color: var(--white);
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
 
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-img">
-                    <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Delivery Guy on scooter">
-                </div>
-                <div class="feature-text">
-                    <h2>Track your food.</h2>
-                    <p>Watch your order as it's prepared and delivered, all in real-time for peace of mind.</p>
-                </div>
-            </div>
-        </section>
+.skip-link:focus {
+    top: 0;
+}
 
-        <section id="menu" class="menu-section">
-            <h2>Popular Choices</h2>
-            <div class="menu-grid">
-                
-                <article class="food-card">
-                    <img src=https://www.greedygourmet.com/wp-content/uploads/2013/02/dal-makhani-feature.jpg alt="Bowl of Dal Makhani">
-                    <div class="card-info">
-                        <span class="tag">Popular</span>
-                        <h3>Dal Makhani</h3>
-                        <p>Rich, creamy lentils cooked to perfection.</p>
-                    </div>
-                </article>
+/* Header & Nav (Flexbox) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
 
-                <article class="food-card">
-                    <img src=https://2.bp.blogspot.com/-neI6rKuvsKI/VyN8GMrfhzI/AAAAAAAAHls/hugFFTKYgs8lrtUSXx0iEyG-KZwL4bPbwCLcB/s1600/tandoori-paneer-tikka4.jpg alt="Plate of Paneer Tikka">
-                    <div class="card-info">
-                        <span class="tag">Special</span>
-                        <h3>Paneer Tikka</h3>
-                        <p>Grilled cottage cheese with spices.</p>
-                    </div>
-                </article>
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
 
-                <article class="food-card">
-                    <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Veggie Pizza Wrap">
-                    <div class="card-info">
-                        <span class="tag">New</span>
-                        <h3>Pizza Wrap</h3>
-                        <p>Italian flavors in a convenient roll.</p>
-                    </div>
-                </article>
-            </div>
-        </section>
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
 
-        <section id="contact" class="contact-section">
-            <div class="form-container">
-                <h2>Get in Touch</h2>
-                <p>Have allergies or specific diet needs? Let us know.</p>
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                    </div>
-                    <button type="submit" class="btn-black">Send Message</button>
-                </form>
-            </div>
-        </section>
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: all 0.25s ease; /* Requirement: Transition */
+}
 
-    </main>
+.nav-links a:hover {
+    color: var(--primary-color);
+}
 
-    <footer class="main-footer">
-        <p>&copy; 2025 FreshFood Inc. All rights reserved.</p>
-    </footer>
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.25s ease;
+}
 
-</body>
-</html>
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+/* Requirement: Keyframe Animation */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-animation {
+    animation: slideUpFade 1s ease-out forwards;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 5%;
+    min-height: 80vh;
+    background-color: var(--white);
+}
+
+.hero-text {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.highlight { color: var(--primary-color); }
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 20px 20px 0px var(--primary-color);
+}
+
+/* Features Section */
+.features {
+    padding: 4rem 5%;
+    background-color: #ecfdf5;
+}
+
+.feature-card {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.feature-img img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Menu Section (Grid) */
+.menu-section {
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+.menu-grid {
+    display: grid;
+    /* Requirement: CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.food-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.25s ease;
+}
+
+.food-card:hover {
+    transform: translateY(-10px);
+}
+
+.food-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-info { padding: 1.5rem; text-align: left; }
+
+.tag {
+    background-color: #d1fae5;
+    color: var(--dark-bg);
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* Contact Form Section */
+.contact-section {
+    padding: 4rem 5%;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Requirement: Form Labels */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.btn-black {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Footer */
+.main-footer {
+    padding: 2rem 5%;
+    text-align: center;
+    background-color: var(--dark-bg);
+    color: var(--white);
+}
+
+/* --- Responsive Breakpoints --- */
+
+/* Tablet (approx 768px) */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* In a real project, this would be a hamburger menu */
+    }
+    
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 2rem;
+    }
+
+    .hero-text {
+        padding-right: 0;
+        margin-bottom: 3rem;
+    }
+
+    .feature-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Mobile (small screens <= 600px) */
+@media (max-width: 600px) {
+    .menu-grid {
+        /* Requirement: Single column stack at small sizes */
+        grid-template-columns: 1fr;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+}
